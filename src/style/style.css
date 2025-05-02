@@ -1,0 +1,110 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: fit-content;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+.spider {
+  padding: 100px;
+}
+.spider .upper-deck {
+  height: 140px;
+  margin-bottom: 40px;
+}
+.spider .upper-deck .main-slot {
+  position: relative;
+  cursor: pointer;
+}
+.spider .upper-deck .main-slot.shake {
+  animation: shake 0.5s ease-in-out;
+}
+.spider .card {
+  position: absolute;
+  cursor: pointer;
+  width: 100px;
+  height: 140px;
+  background-color: #ffffff;
+}
+.spider .card.visible {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.482);
+  border-radius: 6px;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.518);
+  align-items: center;
+  justify-content: center;
+}
+.spider .card.visible img.sign {
+  position: absolute;
+  width: 40px;
+}
+.spider .card.visible p {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.spider .card.visible p.red {
+  color: red;
+}
+.spider .card.visible p.left {
+  left: 7px;
+  top: 7px;
+}
+.spider .card.visible p.right {
+  right: 7px;
+  bottom: 7px;
+}
+.spider .card.visible img.back {
+  visibility: hidden;
+}
+.spider .card.selected {
+  border: 2px solid rgb(116, 116, 255);
+  box-shadow: 5px 5px 8px rgb(116, 116, 255);
+}
+.spider .card.not-visible {
+  width: fit-content;
+}
+.spider .card.not-visible img {
+  width: 100px;
+}
+.spider .deck {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-x: visible;
+  gap: 10px;
+}
+.spider .deck .slot {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.482);
+  border-radius: 6px;
+  width: 100px;
+  height: 140px;
+}
+
+/*# sourceMappingURL=style.css.map */
