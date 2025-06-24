@@ -25,6 +25,10 @@ html, body {
   box-sizing: border-box;
 }
 
+body {
+  position: relative;
+}
+
 p {
   margin: 0;
 }
@@ -32,12 +36,58 @@ p {
 .spider {
   padding: 100px;
 }
+.spider .usage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.spider .usage h1 {
+  color: rgb(51, 51, 149);
+}
+.spider .usage button {
+  cursor: pointer;
+  height: 40px;
+  width: 100px;
+  border: 1px solid rgba(164, 164, 164, 0.622);
+  color: rgb(51, 51, 149);
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(116, 116, 255, 0.062);
+  box-shadow: 0px 0px 8px 1px rgb(116, 116, 255);
+}
+.spider .usage button:hover {
+  box-shadow: 0px 0px 10px 2px rgb(26, 26, 198);
+}
+.spider .usage .restartButton {
+  width: 100px;
+  margin-bottom: 15px;
+}
+.spider .usage.hidden {
+  display: none;
+}
 .spider .upper-deck {
+  position: relative;
+  display: flex;
+  justify-content: center;
   height: 140px;
   margin-bottom: 40px;
 }
+.spider .upper-deck .trash {
+  width: 100px;
+  height: 140px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-shadow: inset 0px 0px 25px 15px rgba(116, 116, 255, 0.274);
+  border-radius: 6px;
+}
 .spider .upper-deck .main-slot {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
   cursor: pointer;
 }
 .spider .upper-deck .main-slot.shake {
@@ -49,47 +99,41 @@ p {
   width: 100px;
   height: 140px;
   background-color: #ffffff;
-}
-.spider .card.visible {
   display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.482);
   border-radius: 6px;
-  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.518);
   align-items: center;
   justify-content: center;
 }
-.spider .card.visible img.sign {
+.spider .card img.sign {
   position: absolute;
   width: 40px;
 }
-.spider .card.visible p {
+.spider .card p {
   position: absolute;
   font-size: 1.2em;
   font-weight: bold;
 }
-.spider .card.visible p.red {
+.spider .card p.red {
   color: red;
 }
-.spider .card.visible p.left {
+.spider .card p.left {
   left: 7px;
   top: 7px;
 }
-.spider .card.visible p.right {
+.spider .card p.right {
   right: 7px;
   bottom: 7px;
 }
-.spider .card.visible img.back {
+.spider .card img.back {
   visibility: hidden;
 }
-.spider .card.selected {
-  border: 2px solid rgb(116, 116, 255);
-  box-shadow: 5px 5px 8px rgb(116, 116, 255);
-}
 .spider .card.not-visible {
-  width: fit-content;
-}
-.spider .card.not-visible img {
   width: 100px;
+  background-image: url("../images/rubashka.png");
+  background-size: cover;
+}
+.spider .card.not-visible img.sign, .spider .card.not-visible p.left, .spider .card.not-visible p.right {
+  display: none;
 }
 .spider .deck {
   display: flex;
@@ -105,6 +149,38 @@ p {
   border-radius: 6px;
   width: 100px;
   height: 140px;
+  cursor: pointer;
+}
+.spider .deck .slot .card {
+  border: 1px solid rgba(0, 0, 0, 0.482);
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.518);
+}
+.spider .deck .slot .card.selected {
+  border: 2px solid rgb(116, 116, 255);
+  box-shadow: 5px 5px 8px rgb(116, 116, 255);
+}
+.spider .deck .slot.hidden {
+  display: none;
+}
+.spider .deck.restart {
+  justify-content: center;
+}
+.spider .deck.restart .usage {
+  position: absolute;
+  top: 40%;
+}
+.spider .deck.restart .restartButton {
+  margin-right: 10px;
+}
+.spider .deck.restart .backButton {
+  margin-left: 10px;
+}
+.spider .deck.restart div.okak {
+  margin: 20px;
+  background-image: url("../images/okak.png");
+  background-size: cover;
+  width: 300px;
+  height: 350px;
 }
 
 /*# sourceMappingURL=style.css.map */

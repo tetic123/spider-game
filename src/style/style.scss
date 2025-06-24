@@ -13,19 +13,77 @@ html, body {
     min-width: fit-content;
     box-sizing: border-box;
 }
+body {
+    position: relative;
+
+}
 p {
     margin: 0;
 }
 
 .spider {
     padding: 100px;
+    .usage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        h1 {
+            color: rgb(51, 51, 149);
+        }
+        
+        button {
+            cursor: pointer;
+            height: 40px;
+            width: 100px;
+            border: 1px solid rgba(164, 164, 164, 0.622);
+            color: rgb(51, 51, 149);
+            font-weight: bold;
+            font-size: 1em;
+            border-radius: 6px;
+            
+            border: none;
+            background-color: rgba(116, 116, 255, 0.062);
+            box-shadow: 0px 0px 8px 1px rgb(116, 116, 255);
+            
+        }
+        button:hover {
+            box-shadow: 0px 0px 10px 2px rgb(26, 26, 198);   
+        }
+        
+        .restartButton {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+        
+    }
+    .usage.hidden {
+        display: none;
+    }
 
     .upper-deck {
+        position: relative;
+        display: flex;
+        justify-content: center;
         height: 140px;
         margin-bottom: 40px;
 
+
+        .trash {
+            width: 100px;
+            height: 140px;  
+            position: absolute;
+            right: 0;
+            top: 0;      
+            box-shadow: inset 0px 0px 25px 15px rgba(116, 116, 255, 0.274);
+            border-radius: 6px;
+        }
+
         .main-slot {
-            position: relative;
+            position: absolute;
+            left: 0;
+            top: 0;
             cursor: pointer;
         }
         .main-slot.shake {
@@ -38,12 +96,8 @@ p {
         width: 100px;
         height: 140px;        
         background-color: #ffffff;
-    }
-    .card.visible {
         display: flex;
-        border: 1px solid rgba(0, 0, 0, 0.482);
         border-radius: 6px;
-        box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.518);
         align-items: center;
         justify-content: center;
         img.sign {   
@@ -70,17 +124,15 @@ p {
             visibility: hidden;
         }
     }
-    .card.selected {
-        border: 2px solid rgb(116, 116, 255);
-        box-shadow: 5px 5px 8px rgb(116, 116, 255);
-    }
     .card.not-visible {
-        width: fit-content;
-        img {
-            width: 100px;
+        width: 100px;
+        background-image: url("../images/rubashka.png");
+        background-size: cover;
+        img.sign, p.left, p.right {
+            display: none;
         }
     }
-
+    
     .deck {
         display: flex;
         flex-wrap: nowrap;
@@ -94,7 +146,43 @@ p {
             border-radius: 6px;
             width: 100px;
             height: 140px;
+            cursor: pointer;
+            .card {
+                border: 1px solid rgba(0, 0, 0, 0.482);
+                box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.518);
+            }
+            .card.selected {
+                border: 2px solid rgb(116, 116, 255);
+                box-shadow: 5px 5px 8px rgb(116, 116, 255);
+            }
+        }
+        .slot.hidden {
+            display: none;
         }
     }
+
+    .deck.restart {
+        justify-content: center;
+
+        .usage {
+            position: absolute;
+            top: 40%;
+        }
+        .restartButton {
+            margin-right: 10px;
+        }
+        .backButton {
+            margin-left: 10px;
+        }
+
+        div.okak {
+            margin: 20px;
+            background-image: url('../images/okak.png');
+            background-size: cover;
+            width: 300px;
+            height: 350px;
+        }
+    }
+
 }
 

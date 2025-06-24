@@ -35,22 +35,42 @@ class MainSlot {
     }
 
     shuffleCards(cards) {
-        for (let i = cards.length - 1; i >= 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [cards[i], cards[j]] = [cards[j], cards[i]];
+        // Группируем карты по масти
+        const hearts = cards.filter(card => card.mast === 1);
+        const spades = cards.filter(card => card.mast === 0);
+    
+        // Перемешиваем каждую масть отдельно
+        const shuffle = arr => {
+            for (let i = arr.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        };
+    
+        shuffle(hearts);
+        shuffle(spades);
+    
+        // Перемешиваем с чередованием мастей (по желанию)
+        const mixed = [];
+        while (hearts.length || spades.length) {
+            if (spades.length) mixed.push(spades.pop());
+            if (hearts.length) mixed.push(hearts.pop());
+        }
+    
+        // Перезаписываем исходный массив
+        for (let i = 0; i < cards.length; i++) {
+            cards[i] = mixed[i];
         }
     }
-
+    
     renderCards() {
         this.mainSlot.innerHTML = '';
         let id = 0;
         this.spider.mainSlotCards.forEach(card => {
             id++;
-            console.log(card.isVisible);
             if (card.isVisible) {
                 card.card.classList.remove('not-visible');
             }
-            this.spider.drawNotVisibleCard(card);
 
             card.id = (id - 1);
             this.mainSlot.appendChild(card.card);
@@ -59,11 +79,12 @@ class MainSlot {
 
     dealCardsAtFirst() {
         const initialCardsDistribution = [6, 6, 6, 6, 5, 5, 5, 5, 5, 5];
-        let dealtCards = 0;
+        let dealtCardsQty = 0;
+        let dealtCards = [];
         let totalCardsToDeal = 54; // Всего карт, которые нужно раздать
         
         const dealNextCard = (slotIndex, cardIndex) => {
-            if (dealtCards >= totalCardsToDeal || this.spider.mainSlotCards.length === 0) {
+            if (dealtCardsQty >= totalCardsToDeal || this.spider.mainSlotCards.length === 0) {
                 return;
             }
         
@@ -72,9 +93,9 @@ class MainSlot {
             if(cardIndex + 1 === initialCardsDistribution[slotIndex]){
                 card.isVisible = true;
             }
-            console.log(cardIndex + 1, initialCardsDistribution[slotIndex], card.isVisible);
             slot.insertCard(card);
-            dealtCards++;
+            dealtCardsQty++;
+            dealtCards.push(card);
         
             if (cardIndex + 1 < initialCardsDistribution[slotIndex]) {
                 setTimeout(() => dealNextCard(slotIndex, cardIndex + 1), 100);
@@ -87,10 +108,14 @@ class MainSlot {
     }                                        
 
     dealCards(spider) {
+        let dealtCards = [];
         for (let i = 0; i < 10; i++) {
             if(this.spider.mainSlotCards.length === 0) break;
             let card = spider.mainSlotCards.pop();
+            dealtCards.push(card);
+            card.isVisible = true;
             this.deckContent.slots[i].insertCard(card);
         }
+        this.spider.actions.push(new Action('dealCards', dealtCards, this.spider));
     }
 }

@@ -10,6 +10,8 @@ class Deck {
             this.newSlot = new Slot(this, i + 1, this.slot);
             this.slots.push(this.newSlot);
         }
+
+        
         
     }
 }
