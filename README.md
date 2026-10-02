@@ -32,5 +32,3 @@
 ## Визуал
 
 ![alt text](<Screenshot 2026-10-02 at 5.03.09 PM.png>)
-
-![alt text](<Screenshot 2026-10-02 at 5.03.14 PM.png>)
